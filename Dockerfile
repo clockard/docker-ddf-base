@@ -1,5 +1,5 @@
 # Generate commands from argbash templates
-FROM matejak/argbash:2.10.0 as argbash
+FROM arm64/argbash:2.10.0 as argbash
 ADD "https://raw.githubusercontent.com/oconnormi/dev-tools/master/templates/ddf-create-cdm.m4" /work/create-cdm.m4
 COPY argbash-templates/* /work/
 RUN ./build.sh
@@ -13,11 +13,9 @@ ENV ENTRYPOINT_HOME=/opt/entrypoint
 
 RUN mkdir -p $ENTRYPOINT_HOME
 
-RUN apk add --no-cache curl openssl gettext bash
-RUN  curl -L https://github.com/oconnormi/props/releases/download/v0.2.0/props_linux_amd64 -o /usr/local/bin/props \
+RUN apk add --no-cache curl openssl gettext jq
+RUN  curl -L https://github.com/oconnormi/props/releases/download/v0.2.0/props_linux_arm -o /usr/local/bin/props \
     && chmod 755 /usr/local/bin/props
-RUN curl -LsSk https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -o /usr/local/bin/jq \
-    && chmod 755 /usr/local/bin/jq
 
 COPY entrypoint/* $ENTRYPOINT_HOME/
 COPY --from=argbash /out/cmd/* /usr/local/bin/

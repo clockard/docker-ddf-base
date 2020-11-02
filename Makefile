@@ -17,7 +17,7 @@ help: ## Display help.
 .PHONY: image
 image: ## Build the docker image
 	@echo "Building $(BUILD_TAG)"
-	@docker build --pull -t $(BUILD_TAG) .
+	@docker build  -t $(BUILD_TAG) .
 
 .PHONY: push
 push: image ## Push the docker image
