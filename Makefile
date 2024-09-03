@@ -1,9 +1,9 @@
 # Set the base name for the image
-IMAGE_NAME:=codice/ddf-base
+IMAGE_NAME:=clockard/ddf-base
 
 GIT_SHA:=$(shell git rev-parse HEAD)
 MASTER_SHA:=$(shell git show-ref -s refs/heads/master)
-IMAGE_VERSION=2.29-alpine 	
+IMAGE_VERSION=2.29.1-alpine
 
 # Compute Build Tag
 BUILD_TAG=$(IMAGE_NAME):$(IMAGE_VERSION)
