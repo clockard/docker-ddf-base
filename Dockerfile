@@ -5,7 +5,10 @@ COPY argbash-templates/* /work/
 RUN ./build.sh
 
 # Create base for final image
-FROM  eclipse-temurin:17-jre-alpine as base
+FROM alpine:3.20.2 as base
+RUN apk add libstdc++ curl ca-certificates bash java-cacerts unzip openjdk17
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+
 LABEL maintainer=oconnormi
 LABEL org.codice.application.type=ddf
 
