@@ -3,7 +3,7 @@ IMAGE_NAME:=clockard/ddf-base-arm64
 
 GIT_SHA:=$(shell git rev-parse HEAD)
 MASTER_SHA:=$(shell git show-ref -s refs/heads/master)
-IMAGE_VERSION=2.29.alpine
+IMAGE_VERSION=java-17-alpine
 
 # Compute Build Tag
 BUILD_TAG=$(IMAGE_NAME):$(IMAGE_VERSION)
