@@ -68,11 +68,7 @@ fi
 if [ -d "$ENTRYPOINT_HOME/post" ]; then
   for f in "$ENTRYPOINT_HOME/post/*";
     do
-      if [ $UID = 0 ]; then
-       chmod 755 $f
-      else
-       sudo chmod 755 $f
-      fi
+      chmod 755 $f
       echo "Running additional post_start configuration: $f"
       $f
     done;
@@ -82,11 +78,7 @@ echo "To run additional post_start configurations mount a script to ${ENTRYPOINT
 
 if [ -e "${ENTRYPOINT_HOME}/post_start_custom.sh" ]; then
   echo "Post-Start Custom Configuration Script found, running now..."
-  if [ $UID = 0 ]; then
-    chmod 755 ${ENTRYPOINT_HOME}/post_start_custom.sh
-  else
-    sudo chmod 755 ${ENTRYPOINT_HOME}/post_start_custom.sh
-  fi
+  chmod 755 ${ENTRYPOINT_HOME}/post_start_custom.sh
   sleep 1
   ${ENTRYPOINT_HOME}/post_start_custom.sh
 fi
